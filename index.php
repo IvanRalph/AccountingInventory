@@ -3,7 +3,19 @@
 <head>
 	<title>Inventory System - Login</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<!--sweetalert-->
+	<script type="text/javascript" src="js/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="css/sweetalert.css">
+
+	<!--jQuery-->
+
+	<!--bootstrap-->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+	<!--custom-->
+	<script type="text/javascript" src="js/validate.js"></script>
 	
 	<style>
 		form{
@@ -24,34 +36,26 @@
 		}
 
 	</style>
+
 </head>
 <body>
 	<div class="container">
-		<form method="" class="center">
+		<form class="center">
 			<div class="form-group">
 				<label>Username:</label>
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" id="username" required>
 			</div>
 
 			<div class="form-group">
 				<label>Password:</label>
-				<input type="password" class="form-control">
+				<input type="password" class="form-control" id="password">
 			</div>
 
 			<div class="form-group button">
+				<input type="submit" class="btn btn-primary" id="submit">
 			</div>
 		</form>
 	</div>
 
-
-
-	<!--jQuery-->
-	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<!--bootstrap-->
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<!--sweetalert-->
-	<script type="text/javascript" src="js/sweetalert.min.js"></script>
-	<!--custom-->P
-	<script type="text/javascript" src="js">
 </body>
 </html>
