@@ -2,9 +2,8 @@
 <html>
 <head>
 	<title>Inventory System - Login</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!--sweetalert-->
 	<script type="text/javascript" src="js/sweetalert.min.js"></script>
 	<link rel="stylesheet" href="css/sweetalert.css">
@@ -13,9 +12,6 @@
 
 	<!--bootstrap-->
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-	<!--custom-->
-	<script type="text/javascript" src="js/validate.js"></script>
 	
 	<style>
 		form{
@@ -57,5 +53,7 @@
 		</form>
 	</div>
 
+<!--custom-->
+	<script type="text/javascript" src="js/validate.js"></script>
 </body>
 </html>
