@@ -12,8 +12,7 @@ $(document).ready(function(){
 			data:firstForm,
 			success: function (data, result) {
                 if (data.success == "true") {
-                    sessionStorage.setItem("user", username);
-                    window.location.href = "admin/dashboard.html";
+                    window.location.href = "admin/dashboard.php";
                 }else{
                 	sweetAlert("Oops...", "Incorrect login details!", "error");
                 	$("#password").val("");

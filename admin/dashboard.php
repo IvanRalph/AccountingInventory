@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if($_SESSION['isLogged'] == false){
+        header("location: ../index.php");
+    }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -56,7 +62,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="items.html">
+                    <a href="items.php">
                         <p>Items</p>
                     </a>
                 </li>
@@ -100,7 +106,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <p>Name</p>
+                                    <p><?php echo $_SESSION['user-name']; ?></p>
                                     <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">

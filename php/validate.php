@@ -1,4 +1,6 @@
 <?php
+	session_start();
+	$_SESSION['isLogged'] = false;
 
 	include "connect.php";
 
@@ -13,8 +15,12 @@
 	if(mysqli_num_rows($result) == 1){
 		$success = array("success"=>"true", "name"=>$row['name']);
 		echo json_encode($success);
+		$_SESSION['isLogged'] = true;
+		$_SESSION['previous-page'] = "dashboard";
+		$_SESSION['user-name'] = $row['name'];
 	}else{
 		$fail = array("success"=>"false");
 		echo json_encode($fail);
+		$_SESSION['isLogged'] = false;
 	}
 ?>
