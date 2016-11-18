@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	$("#submit").click(function(e){
 		e.preventDefault();
 		var username = $("#username").val();
@@ -11,13 +12,15 @@ $(document).ready(function(){
 			data:firstForm,
 			success: function (data, result) {
                 if (data.success == "true") {
-                    sweetAlert("Success", data.name, "success");
+                    sessionStorage.setItem("user", username);
+                    window.location.href = "admin/dashboard.html";
                 }else{
                 	sweetAlert("Oops...", "Incorrect login details!", "error");
+                	$("#password").val("");
                 }
             },
             error: function(data) {
-                alert("WRONG");
+                alert("Error");
             }
 		});
 		e.preventDefault();
