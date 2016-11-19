@@ -3,6 +3,8 @@
     if($_SESSION['isLogged'] == false){
         header("location: ../index.php");
     }
+
+    include "../php/items-table.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -171,7 +173,7 @@
                                     <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Logout</a></li>
+                                <li><a href="../index.php">Logout</a></li>
                               </ul>
                         </li>
                     </ul>
@@ -186,83 +188,58 @@
                     <h4 class="title">Item Details</h4>
                 </div>
                 <div class="content table-responsive table-full-width">
-                    <table class="table table-striped">
+                    <form method="post" action="" id="item-table">
+                        <table class="table table-striped">
                         <thead>
                             <th></th>
                             <th>ID</th>
                             <th>Item Name</th>
+                            <th>Supplier</th>
                             <th>Price</th>
                             <th>Stock</th>
                             <th></th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="checkbox" name="item"></td>
-                                <td>1</td>
-                                <td>Ballpen</td>
-                                <td>PHP 20</td>
-                                <td>50</td>
-                                <td><a href="#"><u>Edit Item</u></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="item"></td>
-                                <td>2</td>
-                                <td>Yellow Pad</td>
-                                <td>PHP 100</td>
-                                <td>50</td>
-                
-                                <td><a href="#"><u>Edit Item</u></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="item"></td>
-                                <td>3</td>
-                                <td>Notebook</td>
-                                <td>PHP 100</td>
-                                <td>80</td>
-            
-                                <td><a href="#"><u>Edit Item</u></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="item"></td>
-                                <td>4</td>
-                                <td>Scientific Calculator</td>
-                                <td>PHP 850</td>
-                                <td>400</td>
-                
-                                <td><a href="#"><u>Edit Item</u></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="item"></td>
-                                <td>5</td>
-                                <td>Folder</td>
-                                <td>PHP 10</td>
-                                <td>1000</td>
-                        
-                                <td><a href="#"><u>Edit Item</u></a></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="item"></td>
-                                <td>6</td>
-                                <td>ID Lace</td>
-                                <td>PHP 100</td>
-                                <td>50</td>  
-                                <td><a href="#"><u>Edit Item</u></a></td>
-                            </tr>
+                            <?php while($rows = mysqli_fetch_array($result)){ ?>
+                                <tr>
+                                    <td><input name="checkbox[]" type="checkbox" id="checkbox[]" 
+                                    value="<?php echo $rows['item_id']; ?>"></td>
+                                    <td><?php echo $rows['item_id']; ?></td>
+                                    <td><?php echo $rows['item_name']; ?></td>
+                                    <td><?php echo $rows['supplier_name']; ?></td>
+                                    <td><?php echo $rows['price']; ?></td>
+                                    <td><?php echo $rows['stock']; ?></td>
+                                    <td><a href="#" id="<?php echo $rows['item_id'] ?>">Edit Item</a></td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
+                    <div class="container-fluid">
+
+                        <div class="col-md-12">
+                            <button class="btn btn-default" data-target="#add-modal" data-toggle="modal">Add Item</button>
+                            <button class="btn btn-danger" type="submit" name="delete" id="delete">Delete Item</button>
+                        </div>
+
+                    </div>
+                    </form>
+                    <?php
+                        if(isset($_POST['delete']) && isset($_POST['checkbox'])){
+                            for($i=0;$i<count($_POST['checkbox']);$i++){
+                                $del_id=$_POST['checkbox'][$i];
+                                $sql = "DELETE FROM items WHERE item_id='$del_id'";
+                                $result = mysqli_query($conn, $sql);
+                            }
+                            // if successful redirect to delete_multiple.php
+                            if($result)
+                            {
+                                echo "<meta http-equiv=\"refresh\" content=\"0;URL=items.php\">";
+                            }
+                        }
+                    ?>
 
                 </div>
             </div>
-        </div>
-
-
-        <div class="container-fluid">
-
-            <div class="col-md-12">
-                <button class="btn btn-default" data-target="#add-modal" data-toggle="modal">Add Item</button>
-                <button class="btn btn-danger">Delete Item</button>
-            </div>
-
         </div>
 
         <!--ADD ITEM MODAL-->
@@ -283,10 +260,10 @@
 
 
 </body>
-
     <!--   Core JS Files   -->
     <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/js/sweetalert.min" type="text/javascript"></script>
 
     <!--  Checkbox, Radio & Switch Plugins -->
     <script src="assets/js/bootstrap-checkbox-radio.js"></script>
@@ -305,5 +282,4 @@
 
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
-
 </html>
