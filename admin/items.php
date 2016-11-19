@@ -41,6 +41,65 @@
 
 </head>
 <body>
+<!--ADD ITEM MODAL-->
+
+<div class="modal fade" id="add-modal" tab-index="-1" role="dialog" aria-labelledby="add-item">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="add-item">Add Item</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        
+                        <div class="container-fluid">
+                            <table>
+                                <form>
+                                    <tr>
+                                        <div class="form-group">
+                                            <th>
+                                                <label>Item Name</label>
+                                            </th>
+                                            <td>
+                                                <input type="text" Placeholder="Enter Name" class="form-control">
+                                            </td>
+                                        </div>
+                                    </tr>
+
+                                    <tr>
+                                        <div class="form-group">
+                                            <th>
+                                                <label>Item Price</label>
+                                            </th>
+                                            <td>
+                                                <input type="number" Placeholder="Enter Price" class="form-control">
+                                            </td>
+                                        </div>
+                                    </tr>
+
+                                    <tr>
+                                        <div class="form-group">
+                                            <th>
+                                                <label>Item Stock</label>
+                                            </th>
+                                            <td>
+                                                <input type="number" Placeholder="Enter Stock" class="form-control">
+                                            </td>
+                                        </div>
+                                    </tr>
+                                </form>
+                            </table>
+                        </div>
+                        
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
@@ -140,53 +199,53 @@
                             <tr>
                                 <td><input type="checkbox" name="item"></td>
                                 <td>1</td>
-                                <td>Dakota Rice</td>
-                                <td>$36,738</td>
-                                <td>Niger</td>
+                                <td>Ballpen</td>
+                                <td>PHP 20</td>
+                                <td>50</td>
                                 <td><a href="#"><u>Edit Item</u></a></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" name="item"></td>
                                 <td>2</td>
-                                <td>Minerva Hooper</td>
-                                <td>$23,789</td>
-                                <td>Curaçao</td>
+                                <td>Yellow Pad</td>
+                                <td>PHP 100</td>
+                                <td>50</td>
                 
                                 <td><a href="#"><u>Edit Item</u></a></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" name="item"></td>
                                 <td>3</td>
-                                <td>Sage Rodriguez</td>
-                                <td>$56,142</td>
-                                <td>Netherlands</td>
+                                <td>Notebook</td>
+                                <td>PHP 100</td>
+                                <td>80</td>
             
                                 <td><a href="#"><u>Edit Item</u></a></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" name="item"></td>
                                 <td>4</td>
-                                <td>Philip Chaney</td>
-                                <td>$38,735</td>
-                                <td>Korea, South</td>
+                                <td>Scientific Calculator</td>
+                                <td>PHP 850</td>
+                                <td>400</td>
                 
                                 <td><a href="#"><u>Edit Item</u></a></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" name="item"></td>
                                 <td>5</td>
-                                <td>Doris Greene</td>
-                                <td>$63,542</td>
-                                <td>Malawi</td>
+                                <td>Folder</td>
+                                <td>PHP 10</td>
+                                <td>1000</td>
                         
                                 <td><a href="#"><u>Edit Item</u></a></td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" name="item"></td>
                                 <td>6</td>
-                                <td>Mason Porter</td>
-                                <td>$78,615</td>
-                                <td>Chile</td>  
+                                <td>ID Lace</td>
+                                <td>PHP 100</td>
+                                <td>50</td>  
                                 <td><a href="#"><u>Edit Item</u></a></td>
                             </tr>
                         </tbody>
