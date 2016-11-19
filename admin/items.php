@@ -59,12 +59,12 @@
 
             <ul class="nav">
                 <li>
-                    <a href="dashboard.html">
+                    <a href="dashboard.php">
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="items.html">
+                    <a href="items.php">
                         <p>Items</p>
                     </a>
                 </li>

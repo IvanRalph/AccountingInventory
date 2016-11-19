@@ -57,7 +57,7 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="dashboard.php">
                         <p>Dashboard</p>
                     </a>
                 </li>
