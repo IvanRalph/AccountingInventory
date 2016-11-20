@@ -122,6 +122,68 @@
     </div>
 </div>
 
+<!-- EDIT MODAL -->
+<div class="modal fade" id="edit-modal" tab-index="-1" role="dialog" aria-labelledby="edit-item">
+    <div class="modal-dialog" role="document" id="modal-window">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="edit-item">Edit Item</h4>
+            </div>
+
+            <form id="add-item-form">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <table>
+                            <tr>
+                                <div class="form-group">
+                                    <th>
+                                        <label>Item Name</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" Placeholder="Enter Name" class="form-control" id="name">
+                                    </td>
+                                    <td><p id="name_error"></p></td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <th>
+                                        <label>Supplier Name</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" Placeholder="Enter Name" class="form-control" id="supplier_name">
+                                    </td>
+                                    <td><p id="supname_error"></p></td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <th>
+                                        <label>Item Price</label>
+                                    </th>
+                                    <td>
+                                        <input type="number" Placeholder="Enter Price" class="form-control" id="price">
+                                    </td>
+                                    <td><p id="price_error"></p></td>
+                                </div>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </form>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="button-save">Save</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
 <div class="wrapper">
     <div class="sidebar" data-background-color="white" data-active-color="danger">
 
@@ -229,13 +291,13 @@
                                     <tr>
                                         <td><input name="checkbox[]" type="checkbox" id="checkbox[]" 
                                         value="<?php echo $rows['item_id']; ?>"></td>
-                                        <td><?php echo $rows['item_id']; ?></td>
-                                        <td><?php echo $rows['item_name']; ?></td>
-                                        <td><?php echo $rows['supplier_name']; ?></td>
-                                        <td><?php echo "PHP " . $rows['price']; ?></td>
+                                        <td id="item-id-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_id']; ?></td>
+                                        <td id="item-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_name']; ?></td>
+                                        <td id="supplier-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['supplier_name']; ?></td>
+                                        <td id="price-<?php echo $rows['item_id']; ?>"><?php echo "PHP " . $rows['price']; ?></td>
                                         <td><?php echo $rows['stock']; ?></td>
                                         <td><?php echo "PHP " . ($rows['price'] * $rows['stock']); ?></td>
-                                        <td><a href="#" id="<?php echo $rows['item_id'] ?>">Edit Item</a></td>
+                                        <td><a href="#" data-target="#edit-modal" data-toggle="modal" id="<?php echo $rows['item_id'] ?>">Edit Item</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

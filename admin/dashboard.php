@@ -3,6 +3,7 @@
     if($_SESSION['isLogged'] == false){
         header("location: ../index.php");
     }
+    include "..//php/count.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -135,14 +136,14 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Items</p>
-                                            23,000
+                                            <?php echo $countItems; ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-angle-double-left"></i> <a href="items.html">View Details</a>
+                                        <i class="ti-angle-double-left"></i> <a href="items.php">View Details</a>
                                     </div>
                                 </div>
                             </div>
