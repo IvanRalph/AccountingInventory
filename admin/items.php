@@ -216,7 +216,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="sales.html">
+                    <a href="sales.php">
                         <p>Sales</p>
                     </a>
                 </li>
@@ -263,70 +263,76 @@
             </div>
         </nav>
 
-        <div class="col-md-12">
-            <div id="my-table">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Item Details</h4>
-                    </div>
-                    <div class="content table-responsive table-full-width">
-                        <form method="post" action="" id="item-table">
-                        <table class="table table-striped">
-                            <thead>
-                                <th></th>
-                                <th>ID</th>
-                                <th>Item Name</th>
-                                <th>Supplier</th>
-                                <th>Price</th>
-                                <th>Stock</th>
-                                <th>Total</th>
-                                <th></th>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    $sql = "SELECT * FROM items";
-                                    $result = mysqli_query($conn, $sql);
-                                    $rows = mysqli_num_rows($result);
-                                    while($rows = mysqli_fetch_array($result)){ ?>
-                                    <tr>
-                                        <td><input name="checkbox[]" type="checkbox" id="checkbox[]" 
-                                        value="<?php echo $rows['item_id']; ?>"></td>
-                                        <td id="item-id-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_id']; ?></td>
-                                        <td id="item-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_name']; ?></td>
-                                        <td id="supplier-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['supplier_name']; ?></td>
-                                        <td id="price-<?php echo $rows['item_id']; ?>"><?php echo "PHP " . $rows['price']; ?></td>
-                                        <td><?php echo $rows['stock']; ?></td>
-                                        <td><?php echo "PHP " . ($rows['price'] * $rows['stock']); ?></td>
-                                        <td><a href="#" data-target="#edit-modal" data-toggle="modal" onClick="editclick(this.id);" id="<?php echo $rows['item_id'] ?>">Edit Item</a></td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                        <div class="container-fluid">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="my-table">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Item Details</h4>
+                                </div>
+                                <div class="content table-responsive table-full-width">
+                                    <form method="post" action="" id="item-table">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <th></th>
+                                            <th>ID</th>
+                                            <th>Item Name</th>
+                                            <th>Supplier</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th>Total</th>
+                                            <th></th>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                $sql = "SELECT * FROM items";
+                                                $result = mysqli_query($conn, $sql);
+                                                $rows = mysqli_num_rows($result);
+                                                while($rows = mysqli_fetch_array($result)){ ?>
+                                                <tr>
+                                                    <td><input name="checkbox[]" type="checkbox" id="checkbox[]" 
+                                                    value="<?php echo $rows['item_id']; ?>"></td>
+                                                    <td id="item-id-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_id']; ?></td>
+                                                    <td id="item-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_name']; ?></td>
+                                                    <td id="supplier-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['supplier_name']; ?></td>
+                                                    <td id="price-<?php echo $rows['item_id']; ?>"><?php echo "PHP " . $rows['price']; ?></td>
+                                                    <td><?php echo $rows['stock']; ?></td>
+                                                    <td><?php echo "PHP " . ($rows['price'] * $rows['stock']); ?></td>
+                                                    <td><a href="#" data-target="#edit-modal" data-toggle="modal" onClick="editclick(this.id);" id="<?php echo $rows['item_id'] ?>">Edit Item</a></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                    <div class="container-fluid">
 
-                            <div class="col-md-12">
-                                <button type="button" class="btn btn-default" data-target="#add-modal" data-toggle="modal">Add Item</button>
-                                <button class="btn btn-danger" type="submit" name="delete" id="delete">Delete Item</button>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn btn-default" data-target="#add-modal" data-toggle="modal">Add Item</button>
+                                            <button class="btn btn-danger" type="submit" name="delete" id="delete">Delete Item</button>
+                                        </div>
+
+                                    </div>
+                                    </form>
+
+                                    <?php
+                                        if(isset($_POST['delete']) && isset($_POST['checkbox'])){
+                                            for($i=0;$i<count($_POST['checkbox']);$i++){
+                                                $del_id=$_POST['checkbox'][$i];
+                                                $sql = "DELETE FROM items WHERE item_id='$del_id'";
+                                                $result = mysqli_query($conn, $sql);
+                                            }
+                                            // if successful redirect to delete_multiple.php
+                                            if($result)
+                                            {
+                                                echo "<meta http-equiv=\"refresh\" content=\"0;URL=items.php\">";
+                                            }
+                                        }
+                                    ?>
+
+                                </div>
                             </div>
-
                         </div>
-                        </form>
-
-                        <?php
-                            if(isset($_POST['delete']) && isset($_POST['checkbox'])){
-                                for($i=0;$i<count($_POST['checkbox']);$i++){
-                                    $del_id=$_POST['checkbox'][$i];
-                                    $sql = "DELETE FROM items WHERE item_id='$del_id'";
-                                    $result = mysqli_query($conn, $sql);
-                                }
-                                // if successful redirect to delete_multiple.php
-                                if($result)
-                                {
-                                    echo "<meta http-equiv=\"refresh\" content=\"0;URL=items.php\">";
-                                }
-                            }
-                        ?>
-
                     </div>
                 </div>
             </div>

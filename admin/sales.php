@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    if($_SESSION['isLogged'] == false){
+        header("location: ../index.php");
+    }
+
+    include "../php/connect.php";
+?>
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,9 +36,11 @@
     <link href="assets/css/demo.css" rel="stylesheet" />
 
     <!--  Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
+
+  
+
 
 </head>
 <body>
@@ -137,20 +150,18 @@
                         <div id="my-table">
                             <div class="card">
                                 <div class="header">
-                                    <h4 class="title">Item Details</h4>
+                                    <h4 class="title">Items on Stock</h4>
                                 </div>
                                 <div class="content table-responsive table-full-width">
                                     <form method="post" action="" id="item-table">
                                     <table class="table table-striped">
                                         <thead>
-                                            <th></th>
                                             <th>ID</th>
                                             <th>Item Name</th>
                                             <th>Supplier</th>
                                             <th>Price</th>
                                             <th>Stock</th>
                                             <th>Total</th>
-                                            <th></th>
                                         </thead>
                                         <tbody>
                                             <?php 
@@ -159,27 +170,16 @@
                                                 $rows = mysqli_num_rows($result);
                                                 while($rows = mysqli_fetch_array($result)){ ?>
                                                 <tr>
-                                                    <td><input name="checkbox[]" type="checkbox" id="checkbox[]" 
-                                                    value="<?php echo $rows['item_id']; ?>"></td>
                                                     <td id="item-id-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_id']; ?></td>
                                                     <td id="item-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_name']; ?></td>
                                                     <td id="supplier-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['supplier_name']; ?></td>
                                                     <td id="price-<?php echo $rows['item_id']; ?>"><?php echo "PHP " . $rows['price']; ?></td>
                                                     <td><?php echo $rows['stock']; ?></td>
                                                     <td><?php echo "PHP " . ($rows['price'] * $rows['stock']); ?></td>
-                                                    <td><a href="#" data-target="#edit-modal" data-toggle="modal" onClick="editclick(this.id);" id="<?php echo $rows['item_id'] ?>">Edit Item</a></td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
                                     </table>
-                                    <div class="container-fluid">
-
-                                        <div class="col-md-12">
-                                            <button type="button" class="btn btn-default" data-target="#add-modal" data-toggle="modal">Add Item</button>
-                                            <button class="btn btn-danger" type="submit" name="delete" id="delete">Delete Item</button>
-                                        </div>
-
-                                    </div>
                                     </form>
 
                                     <?php
@@ -202,117 +202,100 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-
+                <div class="container-fluid">
                     <div class="col-md-12">
-                        <div class="card card-plain">
-                            <div class="header">
-                                <h4 class="title">Table on Plain Background</h4>
-                                <p class="category">Here is a subtitle for this table</p>
-                            </div>
-                            <div class="content table-responsive table-full-width">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <th>ID</th>
-                                    	<th>Name</th>
-                                    	<th>Salary</th>
-                                    	<th>Country</th>
-                                    	<th>City</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        	<td>1</td>
-                                        	<td>Dakota Rice</td>
-                                        	<td>$36,738</td>
-                                        	<td>Niger</td>
-                                        	<td>Oud-Turnhout</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>2</td>
-                                        	<td>Minerva Hooper</td>
-                                        	<td>$23,789</td>
-                                        	<td>Curaçao</td>
-                                        	<td>Sinaai-Waas</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>3</td>
-                                        	<td>Sage Rodriguez</td>
-                                        	<td>$56,142</td>
-                                        	<td>Netherlands</td>
-                                        	<td>Baileux</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>4</td>
-                                        	<td>Philip Chaney</td>
-                                        	<td>$38,735</td>
-                                        	<td>Korea, South</td>
-                                        	<td>Overland Park</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>5</td>
-                                        	<td>Doris Greene</td>
-                                        	<td>$63,542</td>
-                                        	<td>Malawi</td>
-                                        	<td>Feldkirchen in Kärnten</td>
-                                        </tr>
-                                        <tr>
-                                        	<td>6</td>
-                                        	<td>Mason Porter</td>
-                                        	<td>$78,615</td>
-                                        	<td>Chile</td>
-                                        	<td>Gloucester</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
+                        <h4>Order</h4>
                     </div>
 
+                    <form>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Item:</label>
+                                <select class="form-control">
+                                    <option>Item1</option>
+                                    <option>Item2</option>
+                                    <option>Item3</option>
+                                </select>
+                            </div>
+                        </div>
 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="number" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Price Per Quantity:</label>
+                                <input type="number" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Total:</label>
+                                <input type="number" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Transfer:</label><br>
+                                <button type="button" class="btn btn-primary" onclick="enable();">Yes</button>
+                                <button type="button" class="btn btn-primary" onclick="disable();">No</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Branch</label>
+                                <select class="form-control" id="branch" disabled>
+                                    <option value="">Branch 1</option>
+                                    <option value="">Branch 2</option>
+                                    <option value="">Branch 3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Payment Amount:</label>
+                                <input type="number" id="payment" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8" style="margin-top:25px;">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+
+
+
+                    </form>
                 </div>
             </div>
         </div>
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
 
-                        <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                               Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-				<div class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
-                </div>
-            </div>
-        </footer>
+            
 
 
     </div>
 </div>
 
 
+
 </body>
 
     <!--   Core JS Files   -->
-    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script
+              src="https://code.jquery.com/jquery-3.1.1.min.js"
+              integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+              crossorigin="anonymous"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->
@@ -332,6 +315,18 @@
 
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
+
+    <script>
+        function enable(){
+            document.getElementById("branch").disabled = false;
+            document.getElementById("payment").disabled = true;
+        }
+
+        function disable(){
+            document.getElementById("branch").disabled = true;
+            document.getElementById("payment").disabled = false;
+        }
+    </script>
 
 
 </html>
