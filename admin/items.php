@@ -127,10 +127,10 @@
     <div class="modal-dialog" role="document" id="modal-window">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="edit-item">Edit Item</h4>
+                <h4 class="modal-title" id="edit-item">Edit Item ID <span id="show-item-id">0</span></h4>
             </div>
 
-            <form id="add-item-form">
+            <form id="edit-item-form">
                 <div class="modal-body">
                     <div class="container-fluid">
                         <table>
@@ -140,7 +140,7 @@
                                         <label>Item Name</label>
                                     </th>
                                     <td>
-                                        <input type="text" Placeholder="Enter Name" class="form-control" id="name">
+                                        <input type="text" Placeholder="Enter Name" class="form-control" id="edit-name">
                                     </td>
                                     <td><p id="name_error"></p></td>
                                 </div>
@@ -152,7 +152,7 @@
                                         <label>Supplier Name</label>
                                     </th>
                                     <td>
-                                        <input type="text" Placeholder="Enter Name" class="form-control" id="supplier_name">
+                                        <input type="text" Placeholder="Enter Name" class="form-control" id="edit-supplier-name">
                                     </td>
                                     <td><p id="supname_error"></p></td>
                                 </div>
@@ -164,7 +164,7 @@
                                         <label>Item Price</label>
                                     </th>
                                     <td>
-                                        <input type="number" Placeholder="Enter Price" class="form-control" id="price">
+                                        <input type="number" Placeholder="Enter Price" class="form-control" id="edit-price">
                                     </td>
                                     <td><p id="price_error"></p></td>
                                 </div>
@@ -297,7 +297,7 @@
                                         <td id="price-<?php echo $rows['item_id']; ?>"><?php echo "PHP " . $rows['price']; ?></td>
                                         <td><?php echo $rows['stock']; ?></td>
                                         <td><?php echo "PHP " . ($rows['price'] * $rows['stock']); ?></td>
-                                        <td><a href="#" data-target="#edit-modal" data-toggle="modal" id="<?php echo $rows['item_id'] ?>">Edit Item</a></td>
+                                        <td><a href="#" data-target="#edit-modal" data-toggle="modal" onClick="editclick(this.id);" id="<?php echo $rows['item_id'] ?>">Edit Item</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -375,4 +375,20 @@
 
     <!--Custom JS-->
     <script src="assets/js/add-item.js" type="text/javascript"></script>
+    <script src="assets/js/edit-item.js" type="text/javascript"></script>
+
+    <script>
+        function editclick(myID){
+            console.log(myID);
+            var itemName = $("#item-name-"+myID).text();
+            var supplierName = $("#supplier-name-"+myID).text();
+            var price = $("#price-"+myID).text();
+            var price = price.replace('PHP ','');
+            console.log(price);
+            $("#show-item-id").text(myID);
+            $("#edit-name").val(itemName);
+            $("#edit-supplier-name").val(supplierName);
+            $("#edit-price").val(price);
+        }
+    </script>
 </html>
