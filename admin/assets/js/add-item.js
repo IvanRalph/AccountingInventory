@@ -34,7 +34,27 @@ $(document).ready(function(){
 									$("#add-modal").modal("hide");
 									$("#my-table").load(document.URL + " #my-table");
 									document.getElementById("add-item-form").reset();
-
+								}else if(data == "existSuccess"){
+									sweetAlert("Success", "Item already exists, added stocks instead! <br><br> NOTE: Supplier name and price you entered has been discarded. For changes please, manually edit items..","success");
+									swal({
+									  title: "Be aware!",
+									  text: "Item already exists, added stocks instead! <br><br> <strong style='color: #e74c3c'>NOTE:</strong> Supplier name and price you entered has been discarded. For changes please, manually edit items..",
+									  html: true,
+									  type: "warning"
+									});
+									$("#add-modal").modal("hide");
+									$("#my-table").load(document.URL + " #my-table");
+									document.getElementById("add-item-form").reset();
+								}else{
+									swal({
+										title: "ERROR!",
+										text: "Error: " + data,
+										html: true,
+										type: "error"
+									});
+									$("#add-modal").modal("hide");
+									$("#my-table").load(document.URL + " #my-table");
+									document.getElementById("add-item-form").reset();
 								}
 							},
 
