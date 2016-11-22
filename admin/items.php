@@ -308,8 +308,8 @@
                                     <div class="container-fluid">
 
                                         <div class="col-md-12">
-                                            <button type="button" class="btn btn-default" data-target="#add-modal" data-toggle="modal">Add Item</button>
-                                            <button class="btn btn-danger" type="submit" name="delete" id="delete">Delete Item</button>
+                                            <button type="button" class="btn btn-success" data-target="#add-modal" data-toggle="modal">Add Item</button>
+                                            <button class="btn btn-default" type="submit" name="delete" id="delete">Delete Item</button>
                                         </div>
 
                                     </div>

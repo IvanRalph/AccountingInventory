@@ -64,7 +64,7 @@
 
             <ul class="nav">
                 <li>
-                    <a href="items.html">
+                    <a href="items.php">
                         
                         <p>Items</p>
                     </a>
@@ -107,36 +107,18 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Table List</a>
+                    <a class="navbar-brand" href="#">Sales</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-panel"></i>
-								<p>Stats</p>
-                            </a>
-                        </li>
                         <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-									<p>Notifications</p>
-									<b class="caret"></b>
+                                    <p><?php echo $_SESSION['user-name']; ?></p>
+                                    <b class="caret"></b>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
+                                <li><a href="../index.php">Logout</a></li>
                               </ul>
-                        </li>
-						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
-                            </a>
                         </li>
                     </ul>
 
@@ -221,7 +203,7 @@
                                         $result = mysqli_query($conn, $sql);
                                         $rows = mysqli_num_rows($result);
                                         while($rows = mysqli_fetch_array($result)){ ?>
-                                    <option value="<?php echo $rows["item_name"]?>"><?php echo $rows["item_name"]; ?></option>
+                                            <option value="<?php echo $rows["item_name"]?>"><?php echo $rows["item_name"]; ?></option>
                                         <?php } ?>
                                 </select>
                             </div>
@@ -236,15 +218,8 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Price Per Quantity:</label>
-                                <input type="number" class="form-control" disabled>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Total:</label>
-                                <input type="number" class="form-control" disabled>
+                                <label>Total:</label><br>
+                                <span id="totalLabel" style="font-size: 30px;">PHP 0.00</span>
                             </div>
                         </div>
 

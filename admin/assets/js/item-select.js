@@ -10,12 +10,21 @@ $(document).ready(function(){
 			data: dataString,
 			success: function(data, result){
 				if(result == "success"){
-					alert(data);
-					$("#qty").attr("max", data);
+					$("#qty").attr("max", data.stock);
 					$("#qty").keyup(function (){
-						if($(this).val() > data){
-							sweetAlert("Ooops...", "Input exceeded maximum quantity", "error");
+						var stock = eval(data.stock);
+						var price = eval(data.price);
+						if($(this).val() > stock){
+							swal({
+								title: "Oops..",
+								text: "Input exceeded maximum quantity!<br><br>Remaining stock: "+stock,
+								html: true,
+								type: "error"
+							});
 							$("#qty").val('');
+						}else{
+							var total = data.price * $("#qty").val();
+							$("#totalLabel").text("PHP " + total + ".00");
 						}
 					});
 
@@ -25,6 +34,7 @@ $(document).ready(function(){
 				alert(errorThrown);
 			}
 		});
+
 
 
 	});
