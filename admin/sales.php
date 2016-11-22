@@ -192,12 +192,12 @@
                         <h4>Order</h4>
                     </div>
 
-                    <form>
+                    <form id="sales">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Item:</label>
                                 <select class="form-control" name="item_select" id="item-select">
-                                    <option value="none">None</option>
+                                    <option value="None">None</option>
                                     <?php
                                         $sql = "SELECT item_name FROM items";
                                         $result = mysqli_query($conn, $sql);
@@ -212,7 +212,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Quantity:</label>
-                                <input type="number" class="form-control" max="" id="qty">
+                                <input type="number" class="form-control" min="0" max="" id="qty">
                             </div>
                         </div>
 
@@ -235,23 +235,17 @@
                             <div class="form-group">
                                 <label>Branch</label>
                                 <select class="form-control" id="branch" disabled>
-                                    <option value="">Branch 1</option>
-                                    <option value="">Branch 2</option>
-                                    <option value="">Branch 3</option>
+                                    <option value="None">None</option>
+                                    <option value="Branch1">Branch 1</option>
+                                    <option value="Branch2">Branch 2</option>
+                                    <option value="Branch3">Branch 3</option>
                                 </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Payment Amount:</label>
-                                <input type="number" id="payment" class="form-control" disabled>
                             </div>
                         </div>
 
                         <div class="col-md-8" style="margin-top:25px;">
                             <div class="form-group">
-                                <button type="button" class="btn btn-success">Submit</button>
+                                <button type="button" class="btn btn-success" id="sales-submit">Submit</button>
                             </div>
                         </div>
 
@@ -290,9 +284,6 @@
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 	<script src="assets/js/paper-dashboard.js"></script>
 
@@ -301,15 +292,15 @@
 
     <script src="assets/js/item-select.js" type="text/javascript"></script>
 
+    <script src="assets/js/sales.js" type="text/javascript"></script>
+
     <script>
         function enable(){
             document.getElementById("branch").disabled = false;
-            document.getElementById("payment").disabled = true;
         }
 
         function disable(){
             document.getElementById("branch").disabled = true;
-            document.getElementById("payment").disabled = false;
         }
     </script>
 

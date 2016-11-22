@@ -22,6 +22,7 @@ $(document).ready(function(){
 								type: "error"
 							});
 							$("#qty").val('');
+							$("#totalLabel").text("PHP 0.00");
 						}else{
 							var total = data.price * $("#qty").val();
 							$("#totalLabel").text("PHP " + total + ".00");
