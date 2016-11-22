@@ -39,6 +39,8 @@
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
 
+    <!-- SweetAlert-->
+    <link href="../css/sweetalert.css" rel="stylesheet">
   
 
 
@@ -212,18 +214,23 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Item:</label>
-                                <select class="form-control">
-                                    <option>Item1</option>
-                                    <option>Item2</option>
-                                    <option>Item3</option>
+                                <select class="form-control" name="item_select" id="item-select">
+                                    <option value="none">None</option>
+                                    <?php
+                                        $sql = "SELECT item_name FROM items";
+                                        $result = mysqli_query($conn, $sql);
+                                        $rows = mysqli_num_rows($result);
+                                        while($rows = mysqli_fetch_array($result)){ ?>
+                                    <option value="<?php echo $rows["item_name"]?>"><?php echo $rows["item_name"]; ?></option>
+                                        <?php } ?>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Quantity</label>
-                                <input type="number" class="form-control">
+                                <label>Quantity:</label>
+                                <input type="number" class="form-control" max="" id="qty">
                             </div>
                         </div>
 
@@ -297,6 +304,7 @@
               integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
               crossorigin="anonymous"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="assets/js/sweetalert.min.js" type="text/javascript"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->
 	<script src="assets/js/bootstrap-checkbox-radio.js"></script>
@@ -315,6 +323,8 @@
 
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
+
+    <script src="assets/js/item-select.js" type="text/javascript"></script>
 
     <script>
         function enable(){
