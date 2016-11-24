@@ -12,7 +12,8 @@ $(document).ready(function(){
 				} else {
 					var branch = $("#branch").val();
 					if(branch == "None"){
-						sweetAlert("Oops.","No branch selected", "error");
+						sweetAlert("Oops...", "No branch selected", "error");
+						return;
 					} else {
 						var dataString = "item_name=" + item_name + "&" + "qty=" + qty + "&" + "total=" + total + "&" + "branch=" + branch;
 					}

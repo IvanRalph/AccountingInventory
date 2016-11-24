@@ -211,8 +211,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="stocks.html">
-                        <p>Stocks</p>
+                    <a href="logs.php">
+                        <p>Logs</p>
                     </a>
                 </li>
                 <li>
@@ -277,6 +277,7 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <th></th>
+                                            <th>Date Added</th>
                                             <th>ID</th>
                                             <th>Item Name</th>
                                             <th>Supplier</th>
@@ -294,6 +295,7 @@
                                                 <tr>
                                                     <td><input name="checkbox[]" type="checkbox" id="checkbox[]" 
                                                     value="<?php echo $rows['item_id']; ?>"></td>
+                                                    <td><?php echo $rows['date_added']; ?></td>
                                                     <td id="item-id-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_id']; ?></td>
                                                     <td id="item-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_name']; ?></td>
                                                     <td id="supplier-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['supplier_name']; ?></td>

@@ -7,8 +7,6 @@
     include "../php/connect.php";
 ?>
 
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,11 +36,6 @@
     <!--  Fonts and icons     -->
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
-
-    <!-- SweetAlert-->
-    <link href="../css/sweetalert.css" rel="stylesheet">
-  
-
 
 </head>
 <body>
@@ -74,14 +67,14 @@
                         <p>Items</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="logs.php">
                        
-                        <p>Log</p>
+                        <p>Logs</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="sales.html">
+                <li>
+                    <a href="sales.php">
                         
                         <p>Sales</p>
                     </a>
@@ -112,7 +105,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Sales</a>
+                    <a class="navbar-brand" href="#">Logs</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -134,6 +127,33 @@
 
         <div class="content">
             <div class="container-fluid">
+                <div class="row" style="padding-bottom: 10px;">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <select id="" class="form-control">
+                                <option value="">Category</option>
+                                <option value="">Test</option>
+                                <option value="">Test</option>
+                                <option value="">Test</option>
+                                <option value="">Test</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="What are you looking for?">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <button type="button" id="button-submit" class="btn btn-success" style="margin-top:2px;">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" style="z-index:50;">
                 <div class="row">
                     <div class="col-md-12">
                         <div id="my-table">
@@ -145,6 +165,7 @@
                                     <form method="post" action="" id="item-table">
                                     <table class="table table-striped">
                                         <thead>
+                                            <th>Date Added</th>
                                             <th>ID</th>
                                             <th>Item Name</th>
                                             <th>Supplier</th>
@@ -159,6 +180,7 @@
                                                 $rows = mysqli_num_rows($result);
                                                 while($rows = mysqli_fetch_array($result)){ ?>
                                                 <tr>
+                                                    <td><?php echo $rows['date_added']; ?></td>
                                                     <td id="item-id-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_id']; ?></td>
                                                     <td id="item-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_name']; ?></td>
                                                     <td id="supplier-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['supplier_name']; ?></td>
@@ -170,100 +192,75 @@
                                         </tbody>
                                     </table>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="my-table2">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Sold/Transferred Items</h4>
+                                </div>
+                                <div class="content table-responsive table-full-width">
+                                    <form method="post" action="" id="item-table">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <th>Date Sold</th>
+                                            <th>Sales ID</th>
+                                            <th>Item Name</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Total</th>
+                                            <th>Branch</th>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                $sql = "SELECT * FROM sales";
+                                                $result = mysqli_query($conn, $sql);
+                                                $rows = mysqli_num_rows($result);
+                                                while($rows = mysqli_fetch_array($result)){ ?>
+                                                <tr>
+                                                    <td><?php echo $rows['date_added']; ?></td>
+                                                    <td><?php echo $rows['sales_id']; ?></td>
+                                                    <td><?php echo $rows['item_name']; ?></td>
+                                                    <td><?php echo $rows['qty']; ?></td>
+                                                    <td><?php echo "PHP " . $rows['price']; ?></td>
+                                                    <td><?php echo $rows['total']; ?></td>
+                                                    <td><?php echo $rows['branch']; ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                    </form>
 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="container-fluid">
-                    <div class="col-md-12">
-                        <h4>Order</h4>
-                    </div>
-
-                    <form id="sales">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Item:</label>
-                                <select class="form-control" name="item_select" id="item-select">
-                                    <option value="None">None</option>
-                                    <?php
-                                        $sql = "SELECT item_name FROM items";
-                                        $result = mysqli_query($conn, $sql);
-                                        $rows = mysqli_num_rows($result);
-                                        while($rows = mysqli_fetch_array($result)){ ?>
-                                            <option value="<?php echo $rows["item_name"]?>"><?php echo $rows["item_name"]; ?></option>
-                                        <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Quantity:</label>
-                                <input type="number" class="form-control" min="0" max="" id="qty">
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Total:</label><br>
-                                <span id="totalLabel" style="font-size: 30px;">PHP 0.00</span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Transfer:</label><br>
-                                <button type="button" class="btn btn-primary" onclick="enable();">Yes</button>
-                                <button type="button" class="btn btn-primary" onclick="disable();">No</button>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Branch</label>
-                                <select class="form-control" id="branch" disabled>
-                                    <option value="None">None</option>
-                                    <option value="Branch1">Branch 1</option>
-                                    <option value="Branch2">Branch 2</option>
-                                    <option value="Branch3">Branch 3</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-8" style="margin-top:25px;">
-                            <div class="form-group">
-                                <button type="button" class="btn btn-success" id="sales-submit">Submit</button>
-                            </div>
-                        </div>
-
-
-
-                    </form>
-                </div>
             </div>
         </div>
 
 
-            
 
+
+        
 
     </div>
 </div>
 
 
-
 </body>
 
     <!--   Core JS Files   -->
-    <script
-              src="https://code.jquery.com/jquery-3.1.1.min.js"
-              integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-              crossorigin="anonymous"></script>
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/js/sweetalert.min.js" type="text/javascript"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->
 	<script src="assets/js/bootstrap-checkbox-radio.js"></script>
@@ -274,25 +271,13 @@
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
 
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 	<script src="assets/js/paper-dashboard.js"></script>
 
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
-
-    <script src="assets/js/item-select.js" type="text/javascript"></script>
-
-    <script src="assets/js/sales.js" type="text/javascript"></script>
-
-    <script>
-        function enable(){
-            document.getElementById("branch").disabled = false;
-        }
-
-        function disable(){
-            document.getElementById("branch").disabled = true;
-        }
-    </script>
-
 
 </html>
