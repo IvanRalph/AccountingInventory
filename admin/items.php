@@ -288,7 +288,7 @@
                                         </thead>
                                         <tbody>
                                             <?php 
-                                                $sql = "SELECT * FROM items";
+                                                $sql = "SELECT * FROM items ORDER BY date_added DESC";
                                                 $result = mysqli_query($conn, $sql);
                                                 $rows = mysqli_num_rows($result);
                                                 while($rows = mysqli_fetch_array($result)){ ?>

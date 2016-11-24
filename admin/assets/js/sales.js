@@ -1,5 +1,9 @@
 $(document).ready(function(){
 	$("#sales-submit").click(function(){
+		var transfer = false;
+		if($("#transferYes").is(":checked")){
+			transfer = true;
+		}
 		var item_name = $("#item-select").val();
 		var qty = $("#qty").val();
 		var total = $("#totalLabel").text();
@@ -15,7 +19,7 @@ $(document).ready(function(){
 						sweetAlert("Oops...", "No branch selected", "error");
 						return;
 					} else {
-						var dataString = "item_name=" + item_name + "&" + "qty=" + qty + "&" + "total=" + total + "&" + "branch=" + branch;
+						var dataString = "item_name=" + item_name + "&" + "qty=" + qty + "&" + "total=" + total + "&" + "branch=" + branch + "&" + "transfer=" + transfer;
 					}
 				}
 				console.log(dataString);

@@ -216,8 +216,11 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Transfer:</label><br>
-                                <button type="button" class="btn btn-primary" onclick="enable();">Yes</button>
-                                <button type="button" class="btn btn-primary" onclick="disable();">No</button>
+                                <input type="radio" name="transfer" id="transferYes" onclick="enable();"><label>Yes</label>&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="transfer" id="transferNo" onclick="disable();" checked><label>No</label>
+
+                                <!-- <button type="button" class="btn btn-primary" onclick="enable();">Yes</button>
+                                <button type="button" class="btn btn-primary" onclick="disable();">No</button> -->
                             </div>
                         </div>
 
@@ -291,6 +294,7 @@
 
         function disable(){
             document.getElementById("branch").disabled = true;
+            document.getElementById("branch").value = "None";
         }
     </script>
 

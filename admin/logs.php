@@ -175,16 +175,16 @@
                                         </thead>
                                         <tbody>
                                             <?php 
-                                                $sql = "SELECT * FROM items";
+                                                $sql = "SELECT * FROM log_item ORDER BY log_id DESC";
                                                 $result = mysqli_query($conn, $sql);
                                                 $rows = mysqli_num_rows($result);
                                                 while($rows = mysqli_fetch_array($result)){ ?>
                                                 <tr>
                                                     <td><?php echo $rows['date_added']; ?></td>
-                                                    <td id="item-id-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_id']; ?></td>
-                                                    <td id="item-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['item_name']; ?></td>
-                                                    <td id="supplier-name-<?php echo $rows['item_id']; ?>"><?php echo $rows['supplier_name']; ?></td>
-                                                    <td id="price-<?php echo $rows['item_id']; ?>"><?php echo "PHP " . $rows['price']; ?></td>
+                                                    <td id="item-id-<?php echo $rows['log_id']; ?>"><?php echo $rows['log_id']; ?></td>
+                                                    <td id="item-name-<?php echo $rows['log_id']; ?>"><?php echo $rows['item_name']; ?></td>
+                                                    <td id="supplier-name-<?php echo $rows['log_id']; ?>"><?php echo $rows['supplier_name']; ?></td>
+                                                    <td id="price-<?php echo $rows['log_id']; ?>"><?php echo "PHP " . $rows['price']; ?></td>
                                                     <td><?php echo $rows['stock']; ?></td>
                                                     <td><?php echo "PHP " . ($rows['price'] * $rows['stock']); ?></td>
                                                 </tr>
@@ -221,7 +221,7 @@
                                         </thead>
                                         <tbody>
                                             <?php 
-                                                $sql = "SELECT * FROM sales";
+                                                $sql = "SELECT * FROM sales ORDER BY sales_id DESC";
                                                 $result = mysqli_query($conn, $sql);
                                                 $rows = mysqli_num_rows($result);
                                                 while($rows = mysqli_fetch_array($result)){ ?>
