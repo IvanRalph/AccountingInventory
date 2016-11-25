@@ -180,7 +180,7 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Item's bought</p>
+                                            <p>Items bought</p>
                                             <?php echo $countSoldItems['sales_sum'] ?>
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-angle-double-left"></i> <a href="sales.html">View Details</a>
+                                        <i class="ti-angle-double-left"></i> <a href="logs.php">View Details</a>
                                     </div>
                                 </div>
                             </div>
