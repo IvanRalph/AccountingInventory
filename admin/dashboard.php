@@ -3,7 +3,7 @@
     if($_SESSION['isLogged'] == false){
         header("location: ../index.php");
     }
-    include "..//php/count.php";
+    include "../php/count.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -42,7 +42,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-background-color="white" data-active-color="danger">
+    <div class="sidebar" data-background-color="white" data-active-color="info">
 
     <!--
         Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
@@ -68,22 +68,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="stocks.html">
-                        <p>Stocks</p>
+                    <a href="logs.php">
+                        <p>Logs</p>
                     </a>
                 </li>
                 <li>
-                    <a href="sales.html">
+                    <a href="sales.php">
                         <p>Sales</p>
                     </a>
                 </li>
                 <li>
-                    <a href="help.html">
-                        <p>Help</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="export-database.html">
+                    <a href="export-database.php">
                         <p>Export Database</p>
                     </a>
                 </li>
@@ -124,7 +119,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="card">
                             <div class="content">
                                 <div class="row">
@@ -149,7 +144,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="card">
                             <div class="content">
                                 <div class="row">
@@ -160,21 +155,21 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Stocks</p>
-                                            $1,345
+                                            <p>Total Inventory</p>
+                                            <?php echo $countRemItems['stock_sum'] ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-angle-double-left"></i> <a href="stocks.html">View Details</a>
+                                        <i class="ti-angle-double-left"></i> <a href="items.php">View Details</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="card">
                             <div class="content">
                                 <div class="row">
@@ -185,8 +180,8 @@
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Sales</p>
-                                            +45
+                                            <p>Item's bought</p>
+                                            <?php echo $countSoldItems['sales_sum'] ?>
                                         </div>
                                     </div>
                                 </div>
@@ -200,6 +195,50 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="my-table2">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">At year end computation</h4>
+                                </div>
+                                <div class="content table-responsive table-full-width">
+                                    <form method="post" action="" id="item-table">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <th>Item Name</th>
+                                            <th>Stocks left</th>
+                                            <th>Price</th>
+                                            <th>Total</th>
+                                            <th>Remaining Stock price</th>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                                $sql = "SELECT * FROM items ORDER BY date_added DESC";
+                                                $result = mysqli_query($conn, $sql);
+                                                $rows = mysqli_num_rows($result);
+                                                while($rows = mysqli_fetch_array($result)){ ?>
+                                                <tr>
+                                                    <td><?php echo $rows['item_name']; ?></td>
+                                                    <td><?php echo $rows['stock']; ?></td>
+                                                    <td><?php echo "PHP ". $rows['price']; ?></td>
+                                                    <td><?php echo "PHP ". $rows['price'] * $rows['stock']; ?></td>
+                                                    <td><?php echo "PHP ".($rows['price'] * $rows['stock'])/$rows['stock']; ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
                 <div class="row">
 
         <footer class="footer">

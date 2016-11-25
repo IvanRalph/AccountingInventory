@@ -185,7 +185,7 @@
 </div>
 
 <div class="wrapper">
-    <div class="sidebar" data-background-color="white" data-active-color="danger">
+    <div class="sidebar" data-background-color="white" data-active-color="info">
 
     <!--
         Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
@@ -221,12 +221,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="help.html">
-                        <p>Help</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="export-database.html">
+                    <a href="export-database.php">
                         <p>Export Database</p>
                     </a>
                 </li>

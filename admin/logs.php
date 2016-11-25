@@ -41,16 +41,16 @@
 <body>
 
 <div class="wrapper">
-	<div class="sidebar" data-background-color="white" data-active-color="danger">
+	<div class="sidebar" data-background-color="white" data-active-color="info">
 
     <!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
+        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+    -->
 
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a href="#" class="simple-text">
                     Inventory System
                 </a>
             </div>
@@ -63,36 +63,26 @@
                 </li>
                 <li>
                     <a href="items.php">
-                        
                         <p>Items</p>
                     </a>
                 </li>
                 <li class="active">
                     <a href="logs.php">
-                       
                         <p>Logs</p>
                     </a>
                 </li>
                 <li>
                     <a href="sales.php">
-                        
                         <p>Sales</p>
                     </a>
                 </li>
                 <li>
-                    <a href="help.html">
-                        
-                        <p>Help</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="export-database.html">
-                        
+                    <a href="export-database.php">
                         <p>Export Database</p>
                     </a>
                 </li>
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
